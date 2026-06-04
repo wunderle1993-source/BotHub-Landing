@@ -5,10 +5,14 @@
 
 'use strict';
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+const isSmallScreen = window.innerWidth <= 700;
+
 /* ── 1. CURSOR GLOW ──────────────────────────────────────── */
 (function initCursor() {
   const glow = document.getElementById('cursor-glow');
-  if (!glow) return;
+  if (!glow || isTouchDevice) return;
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
   let cx = mx, cy = my;
   const LERP = 0.1;
@@ -42,10 +46,10 @@
 /* ── 2. PARTICLE CANVAS ──────────────────────────────────── */
 (function initParticles() {
   const canvas = document.getElementById('particleCanvas');
-  if (!canvas) return;
+  if (!canvas || prefersReducedMotion) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
-  const COUNT = 55;
+  const COUNT = isSmallScreen ? 24 : 55;
 
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
@@ -105,6 +109,13 @@
 
     // Scrolled state (blur backdrop)
     nav.classList.toggle('scrolled', y > 40);
+
+    if (isTouchDevice || isSmallScreen) {
+      nav.style.transform = 'translateY(0)';
+      hidden = false;
+      lastY = y;
+      return;
+    }
 
     // Auto-hide on scroll down, show on scroll up
     if (y > 200) {
@@ -254,6 +265,7 @@
 
 /* ── 8. CARD TILT EFFECT (subtle 3D) ─────────────────────── */
 (function initCardTilt() {
+  if (isTouchDevice) return;
   const cards = document.querySelectorAll('.bot-card, .price-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', e => {
@@ -278,6 +290,10 @@
   const track = document.querySelector('.marquee-track');
   const wrap  = document.querySelector('.marquee-wrap');
   if (!track || !wrap) return;
+  if (prefersReducedMotion) {
+    track.style.animation = 'none';
+    return;
+  }
   wrap.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
   wrap.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
 })();
@@ -288,8 +304,9 @@
   buttons.forEach(btn => {
     btn.addEventListener('click', function(e) {
       const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const point = e.touches && e.touches[0] ? e.touches[0] : e;
+      const x = point.clientX - rect.left;
+      const y = point.clientY - rect.top;
 
       const ripple = document.createElement('span');
       ripple.style.cssText = `
@@ -350,6 +367,7 @@
 
 /* ── 12. PAGE LOAD ANIMATION ─────────────────────────────── */
 (function initPageLoad() {
+  if (prefersReducedMotion) return;
   document.body.style.opacity = '0';
   document.body.style.transition = 'opacity .5s ease';
   window.addEventListener('load', () => {

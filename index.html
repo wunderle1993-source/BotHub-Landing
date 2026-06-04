@@ -1,350 +1,520 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BotHub — KI & Krypto Intelligence, täglich auf Telegram</title>
-  <meta name="description" content="BotHub liefert dir täglich die wichtigsten KI-News und Krypto-Trading-Insights direkt auf Telegram. Powered by Gemini AI. Kostenlos abonnieren." />
-  <meta property="og:title" content="BotHub — KI & Krypto Intelligence" />
-  <meta property="og:description" content="Automatische Telegram-Kanäle. 3× täglich. Powered by Gemini AI." />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AuraSec™ — Verified Intelligence · AI · Cyber · Crypto</title>
+<meta name="description" content="Täglich geprüfte Signale zu KI, Cybersicherheit und Krypto. Drei spezialisierte Telegram-Kanäle. Kostenlos starten."/>
+<meta name="theme-color" content="#09131f"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#09131f;
+  --bg2:#0f1c2d;
+  --panel:rgba(13,24,39,.88);
+  --line:rgba(160,190,226,.12);
+  --line-hi:rgba(102,198,255,.32);
+  --text:#f3f7fb;
+  --muted:#7a90a8;
+  --soft:#b8cad8;
+  --cyan:#66c6ff;
+  --ice:#a0e8ff;
+  --violet:#8ca0ff;
+  --green:#7df0b8;
+  --amber:#f5c842;
+  --red:#ff6b8a;
+  --r:26px; --r2:18px;
+  --sans:'Sora',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --shadow:0 24px 80px rgba(0,0,0,.36);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);color:var(--text);
+  background:
+    radial-gradient(ellipse 90% 55% at 12% -5%,rgba(102,198,255,.13),transparent 55%),
+    radial-gradient(ellipse 65% 45% at 90% 8%,rgba(140,160,255,.11),transparent 50%),
+    radial-gradient(ellipse 50% 70% at 50% 110%,rgba(125,240,184,.05),transparent 55%),
+    linear-gradient(180deg,#09131f 0%,#0a1524 50%,#07101a 100%);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:88px 88px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 65%);
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;border:none;cursor:pointer;outline:none}
+
+/* ── FLOATING ORBS ── */
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:-1;animation:orbFloat 16s ease-in-out infinite}
+.orb1{width:700px;height:700px;background:rgba(140,160,255,.1);top:-20%;left:-18%;animation-delay:0s}
+.orb2{width:500px;height:500px;background:rgba(102,198,255,.09);top:10%;right:-15%;animation-delay:5s}
+.orb3{width:350px;height:350px;background:rgba(125,240,184,.06);bottom:15%;left:15%;animation-delay:10s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(28px,-36px) scale(1.04)}66%{transform:translate(-20px,22px) scale(.97)}}
+
+/* ── CURSOR ── */
+#cDot{position:fixed;width:5px;height:5px;border-radius:50%;background:var(--cyan);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan)}
+#cRing{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(102,198,255,.38);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .32s var(--ease-out),height .32s var(--ease-out),border-color .2s,background .2s}
+#cRing.big{width:54px;height:54px;border-color:rgba(102,198,255,.65);background:rgba(102,198,255,.04)}
+@media(max-width:700px){#cDot,#cRing{display:none}}
+
+/* ── NAV ── */
+#nav{position:sticky;top:0;z-index:100;transition:background .3s,border-color .3s,transform .4s var(--ease-out)}
+#nav.scrolled{background:rgba(9,19,31,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 24px;height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
+.bmark{
+  width:40px;height:40px;border-radius:13px;flex-shrink:0;
+  border:1px solid rgba(102,198,255,.3);
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.22),transparent 22%),linear-gradient(145deg,rgba(102,198,255,.16),rgba(140,160,255,.08)),#0e1928;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 28px rgba(0,0,0,.26);
+  position:relative;transition:transform .3s var(--ease-spring);
+}
+.brand:hover .bmark{transform:rotate(-8deg) scale(1.08)}
+.bmark::after{content:'';position:absolute;right:7px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 14px rgba(125,240,184,.7)}
+.btxt b{display:block;font-size:18px;font-weight:800;letter-spacing:-.04em}
+.btxt b span{color:var(--cyan)}
+.btxt small{display:block;margin-top:1px;color:var(--muted);font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.nav-links{display:flex;gap:26px;color:var(--muted);font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a{position:relative;padding:3px 0;transition:color .15s}
+.nav-links a::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease-spring)}
+.nav-links a:hover,.nav-links a.on{color:var(--ice)}
+.nav-links a:hover::after,.nav-links a.on::after{transform:scaleX(1)}
+.btn-nav{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:999px;
+  font:700 12px var(--mono);letter-spacing:.07em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  color:#07101a;
+  box-shadow:0 0 28px rgba(102,198,255,.22);
+  transition:transform .25s var(--ease-spring),box-shadow .25s;
+}
+.btn-nav:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 44px rgba(102,198,255,.38)}
+/* burger */
+#burger{display:none;background:none;border:none;padding:8px;cursor:pointer;flex-direction:column;gap:5px}
+#burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+#mob{display:none;flex-direction:column;background:rgba(9,13,23,.97);backdrop-filter:blur(20px);padding:20px 24px;border-top:1px solid var(--line);gap:18px}
+#mob.on{display:flex}
+#mob a{font-size:1rem;font-weight:500;color:var(--soft);transition:color .15s}
+#mob a:hover{color:var(--cyan)}
+#mob .mob-cta{padding:14px;border-radius:999px;text-align:center;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#07101a !important;font-weight:800}
+@media(max-width:860px){.nav-links,.btn-nav{display:none}#burger{display:flex}}
+
+/* ── TICKER ── */
+.ticker{border-block:1px solid var(--line);background:rgba(102,198,255,.025);overflow:hidden;white-space:nowrap;user-select:none}
+.tick-track{display:inline-flex;animation:tickMove 38s linear infinite}
+.ticker:hover .tick-track{animation-play-state:paused}
+.tick-track span{padding:12px 28px;color:var(--muted);font:500 11px var(--mono);letter-spacing:.05em}
+.tick-track span b{color:var(--cyan)}
+.tick-track span .g{color:var(--green)}.tick-track span .r{color:var(--red)}
+@keyframes tickMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.slabel{color:var(--cyan);font:700 11px var(--mono);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+h2.shead{font-size:clamp(34px,4.8vw,62px);line-height:.95;letter-spacing:-.065em;font-weight:900}
+h2.shead em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ssub{color:var(--muted);font-size:16px;line-height:1.65;max-width:560px;margin-top:14px}
+.sec-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:50px;padding:0 24px;border-radius:999px;
+  font:700 12px var(--mono);letter-spacing:.07em;text-transform:uppercase;
+  border:1px solid var(--line-hi);background:rgba(102,198,255,.05);color:var(--soft);
+  position:relative;overflow:hidden;white-space:nowrap;
+  transition:transform .22s var(--ease-spring),box-shadow .22s,background .18s,border-color .18s,color .18s;
+}
+.btn:hover{transform:translateY(-3px);background:rgba(102,198,255,.1);color:var(--ice);border-color:rgba(102,198,255,.5)}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#07101a;border:none;font-weight:800;box-shadow:0 12px 40px rgba(102,198,255,.22)}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(102,198,255,.35);color:#07101a}
+.btn-soft{border-color:var(--line);color:var(--muted);background:rgba(255,255,255,.03)}
+.btn-soft:hover{border-color:rgba(102,198,255,.4);color:var(--soft)}
+.btn-sm{min-height:42px;padding:0 18px;font-size:11px}
+.btn-full{width:100%;justify-content:center}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 0 80px;overflow:hidden}
+#pc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.4;z-index:0}
+.hero-in{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:9px 15px;border-radius:999px;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);
+  color:var(--cyan);font:600 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;
+  margin-bottom:26px;
+}
+.ldot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(125,240,184,.65);animation:ldot 2.4s ease-in-out infinite}
+@keyframes ldot{0%,100%{opacity:1;box-shadow:0 0 12px rgba(125,240,184,.65)}50%{opacity:.35;box-shadow:0 0 4px rgba(125,240,184,.3)}}
+h1{font-size:clamp(50px,7vw,94px);line-height:.9;letter-spacing:-.075em;font-weight:900;margin-bottom:24px}
+.grad{
+  background:linear-gradient(95deg,var(--text) 0%,var(--ice) 35%,var(--violet) 70%,var(--cyan) 100%);
+  background-size:200%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradShift 6s ease-in-out infinite;
+}
+@keyframes gradShift{0%,100%{background-position:0%}50%{background-position:100%}}
+.lead{font-size:18px;line-height:1.68;color:var(--soft);max-width:520px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.trust-pill{padding:13px 14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--soft);font-size:13px;line-height:1.3}
+
+/* ── HERO CARD ── */
+.hero-card{
+  position:relative;overflow:hidden;padding:28px;
+  border-radius:var(--r);border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(16,29,48,.97),rgba(10,18,29,.98));
+  box-shadow:var(--shadow);
+}
+.hero-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(102,198,255,.1),transparent 28%),radial-gradient(circle at 0 100%,rgba(140,160,255,.1),transparent 28%);pointer-events:none}
+.hero-card>*{position:relative}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line);color:var(--muted);font:500 11px var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.live-tag{display:inline-flex;align-items:center;gap:7px;color:var(--green)}
+.live-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 12px rgba(125,240,184,.65)}
+.proof-list{display:grid;gap:12px;margin-top:18px}
+.proof-item{padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03)}
+.proof-item b{display:block;margin-bottom:5px;font-size:16px}
+.proof-item p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+
+/* ── CARDS ── */
+.card{
+  position:relative;overflow:hidden;padding:26px;
+  border-radius:var(--r);border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--panel),rgba(10,18,29,.97));
+  box-shadow:0 18px 54px rgba(0,0,0,.22);
+  transition:border-color .22s,transform .22s var(--ease-out),box-shadow .22s;
+  transform-style:preserve-3d;
+}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(102,198,255,.25),transparent);pointer-events:none}
+.card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 0,rgba(102,198,255,.07),transparent 38%);pointer-events:none}
+.card>*{position:relative;z-index:1}
+.card:hover{border-color:rgba(102,198,255,.2);transform:translateY(-4px);box-shadow:0 28px 70px rgba(0,0,0,.3),0 0 40px rgba(102,198,255,.04)}
+.card-v{border-color:rgba(140,160,255,.22);background:linear-gradient(180deg,rgba(22,14,40,.95),rgba(8,12,22,.98))}
+.card-v::before{background:linear-gradient(90deg,transparent,rgba(140,160,255,.35),transparent)}
+.card-v::after{background:radial-gradient(circle at 20% 0,rgba(140,160,255,.09),transparent 38%)}
+.card-g{border-color:rgba(125,240,184,.18)}
+.card-g::before{background:linear-gradient(90deg,transparent,rgba(125,240,184,.3),transparent)}
+.mini-label{color:var(--cyan);font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.card h3{margin:14px 0 10px;font-size:26px;line-height:1.04;letter-spacing:-.05em;font-weight:800}
+.card p{margin:0;color:var(--muted);line-height:1.62;font-size:14px}
+.feats{list-style:none;margin:14px 0;display:grid;gap:9px}
+.feats li{font-size:14px;color:var(--soft);display:flex;align-items:flex-start;gap:9px;line-height:1.35}
+.feats li::before{content:'';flex-shrink:0;width:16px;height:16px;border-radius:50%;margin-top:1px;background:rgba(125,240,184,.1);border:1px solid rgba(125,240,184,.28);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%237df0b8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:9px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line-hi);background:rgba(102,198,255,.06);color:var(--cyan);font:600 11px var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.badge-v{border-color:rgba(140,160,255,.4);background:rgba(140,160,255,.07);color:var(--violet)}
+.badge-g{border-color:rgba(125,240,184,.35);background:rgba(125,240,184,.06);color:var(--green)}
+.ch-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.ch-status{color:var(--green);font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.card-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.lbox{border-top:1px solid var(--line);padding-top:14px;margin-top:16px}
+.lbox strong{display:block;font-size:13px;color:var(--text);margin-bottom:4px}
+.lbox p{font:12px var(--mono);color:var(--muted);line-height:1.5}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+/* ── NEWS FEED ── */
+.nitem{
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
+  border:1px solid var(--line);border-radius:18px;padding:16px;
+  background:rgba(13,24,39,.5);
+  transition:border-color .15s,background .15s,transform .15s;
+}
+.nitem:hover{border-color:rgba(102,198,255,.18);background:rgba(13,24,39,.8);transform:translateX(3px)}
+.ntag{font:700 10px var(--mono);border:1px solid rgba(102,198,255,.25);border-radius:999px;padding:5px 9px;text-transform:uppercase;white-space:nowrap;background:rgba(102,198,255,.04);color:var(--cyan)}
+.ntag.cy{color:var(--red);border-color:rgba(255,107,138,.25);background:rgba(255,107,138,.04)}
+.ntag.cr{color:var(--amber);border-color:rgba(245,200,66,.25);background:rgba(245,200,66,.04)}
+.ntag.tl{color:var(--violet);border-color:rgba(140,160,255,.28);background:rgba(140,160,255,.05)}
+.nitem h4{font-size:14px;font-weight:600;letter-spacing:-.02em;line-height:1.3;margin-bottom:3px}
+.nitem p{font-size:12px;color:var(--muted);line-height:1.45}
+.nscore{font:700 12px var(--mono);color:var(--green);white-space:nowrap}
+.nscore.hi{color:var(--red)}.nscore.md{color:var(--amber)}
+.portal-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;align-items:start}
+.pfeed{display:grid;gap:10px}
+.nad{border:1px dashed rgba(125,240,184,.28);border-radius:var(--r);background:linear-gradient(155deg,rgba(125,240,184,.05),rgba(102,198,255,.03));padding:26px}
+.nad-label{font:700 10px var(--mono);color:var(--green);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+.nad h3{font-size:19px;font-weight:700;letter-spacing:-.04em;margin-bottom:8px}
+.nad p{color:var(--muted);font-size:14px;margin-bottom:16px;line-height:1.55}
+
+/* ── SPONSOR BANNERS ── */
+.sban{
+  display:block;border:1px solid var(--line);border-radius:var(--r2);
+  overflow:hidden;position:relative;margin:28px 0;
+  transition:border-color .2s,box-shadow .2s,transform .18s;
+}
+.sban:hover{border-color:rgba(102,198,255,.2);box-shadow:0 12px 50px rgba(0,0,0,.3);transform:translateY(-2px)}
+.sban img{width:100%;display:block;transition:opacity .2s}
+.sban:hover img{opacity:.88}
+.sban-badge{position:absolute;top:10px;right:12px;z-index:2;font:700 9px var(--mono);color:var(--muted);letter-spacing:.12em;text-transform:uppercase;background:rgba(9,13,23,.88);border:1px solid var(--line);border-radius:5px;padding:3px 8px}
+
+/* ══════════════════════════════════════════════════
+   PRICING SECTION — 2026. NO COMPROMISES.
+══════════════════════════════════════════════════ */
+.pricing-section{
+  background:linear-gradient(180deg,transparent 0%,rgba(140,160,255,.04) 50%,transparent 100%);
+}
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  align-items:start;
+  margin-top:16px;
+}
+
+.pcard{
+  position:relative;display:flex;flex-direction:column;
+  border:1px solid var(--line);border-radius:24px;
+  background:linear-gradient(175deg,rgba(14,26,42,.97),rgba(8,14,24,.99));
+  padding:30px 26px;overflow:hidden;
+  transition:border-color .25s,transform .25s var(--ease-out),box-shadow .25s;
+}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(102,198,255,.2),transparent);pointer-events:none}
+.pcard::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(102,198,255,.05),transparent 44%);pointer-events:none}
+.pcard>*{position:relative;z-index:1}
+.pcard:hover{transform:translateY(-5px);border-color:rgba(102,198,255,.18);box-shadow:0 32px 80px rgba(0,0,0,.4)}
+
+/* FEATURED card */
+.pcard-feat{
+  border-color:rgba(140,160,255,.45) !important;
+  background:linear-gradient(175deg,rgba(22,14,45,.98),rgba(8,5,20,.99)) !important;
+  box-shadow:0 0 80px rgba(140,160,255,.1),0 28px 70px rgba(0,0,0,.45) !important;
+  transform:scale(1.04) !important;
+}
+.pcard-feat::before{background:linear-gradient(90deg,transparent,rgba(140,160,255,.5),transparent) !important}
+.pcard-feat::after{background:radial-gradient(circle at 50% 0,rgba(140,160,255,.1),transparent 44%) !important}
+.pcard-feat:hover{transform:scale(1.04) translateY(-5px) !important}
+
+.feat-banner{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--violet),var(--cyan));
+  color:#07101a;font:800 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 20px;border-radius:0 0 14px 14px;white-space:nowrap;
+}
+
+/* Plan badge */
+.pbadge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(102,198,255,.28);border-radius:999px;
+  padding:5px 12px;font:700 10px var(--mono);
+  color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;
+  background:rgba(102,198,255,.05);margin-bottom:16px;align-self:flex-start;
+}
+.pbadge.free{border-color:rgba(125,240,184,.35);color:var(--green);background:rgba(125,240,184,.06)}
+.pbadge.prem{border-color:rgba(140,160,255,.4);color:#c4b5fd;background:rgba(140,160,255,.07)}
+.pbadge.api{border-color:rgba(245,200,66,.3);color:var(--amber);background:rgba(245,200,66,.05)}
+
+.pname{font-size:20px;font-weight:800;letter-spacing:-.05em;margin-bottom:6px}
+.pdesc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:22px;min-height:38px}
+
+/* Price display */
+.pprice{margin-bottom:24px}
+.pnum{
+  display:block;font-size:54px;font-weight:900;letter-spacing:-.08em;line-height:1;
+  background:linear-gradient(135deg,var(--text) 40%,var(--soft));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pnum.nfree{background:linear-gradient(135deg,var(--green),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pnum.nprem{background:linear-gradient(135deg,#c4b5fd,var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pnum.nsoon{font-size:34px;background:none;color:var(--muted)}
+.pper{font-size:13px;color:var(--muted);margin-top:6px;font-weight:500}
+.pdiv{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:18px 0}
+.pfeats{list-style:none;display:grid;gap:10px;flex:1}
+.pfeats li{font-size:13px;color:var(--soft);display:flex;align-items:flex-start;gap:9px;line-height:1.35}
+.pfeats li::before{
+  content:'';flex-shrink:0;width:16px;height:16px;border-radius:50%;margin-top:1px;
+  background:rgba(125,240,184,.1);border:1px solid rgba(125,240,184,.28);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%237df0b8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:9px;
+}
+.pfeats li.no::before{
+  background:rgba(122,144,168,.08);border-color:rgba(122,144,168,.2);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' stroke='%237a90a8' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.pfeats li.no{color:var(--muted)}
+.pcta{margin-top:22px}
+.pricing-note{text-align:center;font:11px var(--mono);color:var(--muted);letter-spacing:.05em;margin-top:22px}
+
+/* ── AD SLOTS ── */
+.adcard{border:1px solid var(--line);border-radius:var(--r2);padding:22px;background:rgba(13,24,39,.55);transition:border-color .15s,transform .15s}
+.adcard:hover{border-color:rgba(102,198,255,.15);transform:translateY(-2px)}
+.adcard h4{font-size:16px;font-weight:700;letter-spacing:-.03em;margin-bottom:7px}
+.adcard p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px}
+
+/* ── JOIN ── */
+.join-box{
+  border:1px solid rgba(102,198,255,.22);border-radius:var(--r);
+  background:linear-gradient(135deg,rgba(102,198,255,.08),rgba(140,160,255,.05));
+  padding:52px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+}
+.join-box h2{font-size:clamp(28px,3.5vw,48px);font-weight:900;letter-spacing:-.065em;line-height:.92;margin-bottom:12px}
+.email-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.email-row input{flex:1;min-width:200px;background:rgba(9,13,23,.8);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:14px 20px;font:inherit;font-size:14px;outline:none;transition:border-color .15s}
+.email-row input:focus{border-color:rgba(102,198,255,.4)}
+.email-row input::placeholder{color:var(--muted)}
+
+/* ── LEGAL ── */
+.legal{border-top:1px solid var(--line);padding:44px 0;background:rgba(9,13,23,.6)}
+.legal-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:24px}
+.clist{list-style:none;display:grid;gap:7px;margin-top:12px}
+.clist li{font-size:13px;color:var(--muted);display:flex;gap:8px}
+.clist li::before{content:'·';color:var(--cyan);flex-shrink:0}
+details{border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin-bottom:8px;background:rgba(13,24,39,.4)}
+details.warn{border-color:rgba(245,200,66,.2);background:rgba(245,200,66,.02)}
+summary{cursor:pointer;font:600 13px var(--sans);color:var(--soft);user-select:none}
+details p{color:var(--muted);font-size:13px;line-height:1.65;margin-top:10px}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--line);padding:56px 0 28px;background:rgba(6,12,21,.8)}
+.footer-grid{display:grid;grid-template-columns:1.4fr repeat(4,.6fr);gap:28px;margin-bottom:36px}
+.footer-grid h4{font:700 10px var(--mono);color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.footer-grid a,.footer-grid p{display:block;color:var(--muted);font-size:13px;line-height:2.1;transition:color .12s}
+.footer-grid a:hover{color:var(--cyan)}
+.footer-bottom{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom span{font:11px var(--mono);color:rgba(255,255,255,.25)}
+.cchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.cchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 11px 5px 5px;font:600 10px var(--mono);color:var(--muted);letter-spacing:.07em;text-transform:uppercase;background:rgba(255,255,255,.02);transition:.15s}
+.cchip:hover{border-color:rgba(102,198,255,.3);color:var(--cyan);background:rgba(102,198,255,.05)}
+.cchip img{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .62s var(--ease-out),transform .62s var(--ease-out)}
+.reveal.left{transform:translateX(-26px)}.reveal.right{transform:translateX(26px)}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1060px){
+  .hero-grid,.portal-grid,.join-box,.legal-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr 1fr}
+  .pcard-feat{transform:none !important}
+  .pcard-feat:hover{transform:translateY(-5px) !important}
+  .g3{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .trust-row{grid-template-columns:1fr 1fr}
+  section{padding:70px 0}
+  .hero{padding:120px 0 76px;min-height:auto}
+}
+@media(max-width:700px){
+  .pricing-grid,.g3,.g2,.footer-grid{grid-template-columns:1fr}
+  h1{font-size:46px}
+  h2.shead{font-size:32px}
+  .wrap{padding:0 18px}
+  section{padding:54px 0}
+  .hero{padding:110px 0 60px}
+  .hero-btns .btn,.btn-full{width:100%;justify-content:center}
+  .join-box{padding:28px 18px;grid-template-columns:1fr}
+  .trust-row{grid-template-columns:1fr 1fr}
+  .hero-card{margin-top:36px}
+  .btxt small{display:none}
+}
+</style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════ CURSOR GLOW -->
-<div id="cursor-glow"></div>
+<div id="cDot"></div>
+<div id="cRing"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
 
-<!-- ═══════════════════════════════════════════════════════ NAVBAR -->
-<nav class="navbar" id="navbar">
+<!-- NAV -->
+<nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-brand">
-      <div class="brand-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#bolt)" stroke="none"/>
-          <defs>
-            <linearGradient id="bolt" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#f5c842"/>
-              <stop offset="1" stop-color="#ff6b35"/>
-            </linearGradient>
-          </defs>
-        </svg>
+    <a class="brand" href="#top">
+      <span class="bmark"></span>
+      <div class="btxt">
+        <b>Aura<span>Sec™</span></b>
+        <small>Verified Intelligence OS</small>
       </div>
-      <span class="brand-name">BotHub</span>
     </a>
-
-    <div class="nav-links">
-      <a href="#bots" class="nav-link">Kanäle</a>
-      <a href="#how" class="nav-link">Features</a>
-      <a href="#pricing" class="nav-link">Preise</a>
-      <a href="#advertise" class="nav-link">Werbung</a>
-    </div>
-
-    <div class="nav-actions">
-      <a href="#bots" class="btn-nav-cta">
-        Kostenlos starten
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-
-    <button class="nav-burger" id="navBurger" aria-label="Menu">
+    <nav class="nav-links">
+      <a href="#portal">Live</a>
+      <a href="#channels">Kanäle</a>
+      <a href="#premium">Pricing</a>
+      <a href="#ads">Werbung</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <a class="btn-nav" href="https://t.me/AuraSecBot?start=free" target="_blank" rel="noopener">Join Free →</a>
+    <button id="burger" aria-label="Menü" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
-
-  <div class="nav-mobile" id="navMobile">
-    <a href="#bots">Kanäle</a>
-    <a href="#how">Features</a>
-    <a href="#pricing">Preise</a>
-    <a href="#advertise">Werbung</a>
-    <a href="https://t.me/MegaTradertv" target="_blank" class="mobile-cta">🏆 Mega Trader abonnieren</a>
-  </div>
+  <nav id="mob">
+    <a href="#portal">Live</a>
+    <a href="#channels">Kanäle</a>
+    <a href="#premium">Pricing</a>
+    <a href="#ads">Werbung</a>
+    <a href="#contact">Kontakt</a>
+    <a class="mob-cta" href="https://t.me/AuraSecBot?start=free" target="_blank" rel="noopener">Join Free via Telegram →</a>
+  </nav>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════ HERO -->
-<section class="hero" id="home">
-  <!-- Canvas Particles -->
-  <canvas id="particleCanvas"></canvas>
-
-  <!-- Ambient Orbs -->
-  <div class="ambient">
-    <div class="orb orb--1"></div>
-    <div class="orb orb--2"></div>
-    <div class="orb orb--3"></div>
-    <div class="orb orb--4"></div>
-  </div>
-
-  <!-- Grid -->
-  <div class="hero-grid"></div>
-
-  <div class="hero-inner">
-    <!-- Status badge -->
-    <div class="hero-status reveal">
-      <span class="status-dot"></span>
-      <span>Beide Kanäle aktiv &amp; live</span>
-      <span class="status-sep">·</span>
-      <span class="status-count" id="heroSubCount">Wird geladen…</span>
-    </div>
-
-    <!-- Headline -->
-    <h1 class="hero-h1 reveal reveal--delay-1">
-      Dein unfairer<br/>
-      <span class="h1-highlight">Informationsvorsprung</span><br/>
-      in KI &amp; Krypto.
-    </h1>
-
-    <!-- Sub -->
-    <p class="hero-sub reveal reveal--delay-2">
-      Zwei vollautomatische Telegram-Kanäle. Powered by Gemini 2.5 Pro.<br/>
-      Kein Noise. Nur das Signal — dreimal täglich, direkt auf dein Handy.
-    </p>
-
-    <!-- CTAs -->
-    <div class="hero-ctas reveal reveal--delay-3">
-      <a href="https://t.me/MegaTradertv" target="_blank" class="btn-hero-primary">
-        <!-- Telegram SVG -->
-        <svg class="tg-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-          <path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/>
-        </svg>
-        🏆 Mega Trader abonnieren
-      </a>
-      <a href="https://t.me/NeuroNews24" target="_blank" class="btn-hero-secondary">
-        <svg class="tg-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-          <path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/>
-        </svg>
-        🤖 NeuroNews24 abonnieren
-      </a>
-    </div>
-
-    <!-- Stats -->
-    <div class="hero-stats reveal reveal--delay-4">
-      <div class="stat-item">
-        <span class="stat-val counter" data-target="3">0</span><span class="stat-unit">×</span>
-        <span class="stat-label">täglich</span>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-item">
-        <span class="stat-val counter" data-target="15">0</span><span class="stat-unit">+</span>
-        <span class="stat-label">Quellen live</span>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-item">
-        <span class="stat-val counter" data-target="100">0</span><span class="stat-unit">%</span>
-        <span class="stat-label">AI-kuratiert</span>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-item">
-        <span class="stat-val counter" data-target="0">0</span><span class="stat-unit">€</span>
-        <span class="stat-label">Einstieg</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll cue -->
-  <div class="scroll-cue">
-    <span>Scroll</span>
-    <div class="scroll-line"><div class="scroll-dot"></div></div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════ MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>🔥 BTC Live-Analyse</span><span class="m-sep">·</span>
-    <span>⚡ ETH Arbitrage-Radar</span><span class="m-sep">·</span>
-    <span>🧠 GPT-5 Leak exklusiv</span><span class="m-sep">·</span>
-    <span>📈 SOL +12% — Warum?</span><span class="m-sep">·</span>
-    <span>🚨 DeFi Exploit $47M</span><span class="m-sep">·</span>
-    <span>🤖 Gemini 2.5 Update</span><span class="m-sep">·</span>
-    <span>💰 XRP Legal Victory</span><span class="m-sep">·</span>
-    <span>🔓 AI Jailbreak Exposed</span><span class="m-sep">·</span>
-    <span>😱 Fear &amp; Greed: Extreme Fear</span><span class="m-sep">·</span>
-    <span>🏆 Mega Trader Live</span><span class="m-sep">·</span>
-    <span>🔥 BTC Live-Analyse</span><span class="m-sep">·</span>
-    <span>⚡ ETH Arbitrage-Radar</span><span class="m-sep">·</span>
-    <span>🧠 GPT-5 Leak exklusiv</span><span class="m-sep">·</span>
-    <span>📈 SOL +12% — Warum?</span><span class="m-sep">·</span>
-    <span>🚨 DeFi Exploit $47M</span><span class="m-sep">·</span>
-    <span>🤖 Gemini 2.5 Update</span><span class="m-sep">·</span>
-    <span>💰 XRP Legal Victory</span><span class="m-sep">·</span>
-    <span>🔓 AI Jailbreak Exposed</span><span class="m-sep">·</span>
-    <span>😱 Fear &amp; Greed: Extreme Fear</span><span class="m-sep">·</span>
-    <span>🏆 Mega Trader Live</span><span class="m-sep">·</span>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="tick-track">
+    <span><b>AI</b> &nbsp;Agent workflows entering production &nbsp;·&nbsp; Score <b class="g">8.4</b></span>
+    <span><b>CYBER</b> &nbsp;Telegram wallet drainers elevated &nbsp;·&nbsp; Risk <b class="r">HIGH</b></span>
+    <span><b>BTC</b> &nbsp;Market pulse neutral &nbsp;·&nbsp; ETH narrative rotation watch</span>
+    <span><b>AURASEC</b> &nbsp;Sponsor slot verfügbar &nbsp;·&nbsp; <a href="#ads" style="color:var(--cyan)">Jetzt buchen</a></span>
+    <span><b>AI</b> &nbsp;OSS model release queue &nbsp;·&nbsp; LocalLLaMA top 3 reviewed</span>
+    <span><b>TOOLS</b> &nbsp;Open-source radar update &nbsp;·&nbsp; Score <b class="g">7.6</b></span>
+    <span><b>AI</b> &nbsp;Agent workflows entering production &nbsp;·&nbsp; Score <b class="g">8.4</b></span>
+    <span><b>CYBER</b> &nbsp;Telegram wallet drainers elevated &nbsp;·&nbsp; Risk <b class="r">HIGH</b></span>
+    <span><b>BTC</b> &nbsp;Market pulse neutral &nbsp;·&nbsp; ETH narrative rotation watch</span>
+    <span><b>AURASEC</b> &nbsp;Sponsor slot verfügbar &nbsp;·&nbsp; <a href="#ads" style="color:var(--cyan)">Jetzt buchen</a></span>
+    <span><b>AI</b> &nbsp;OSS model release queue &nbsp;·&nbsp; LocalLLaMA top 3 reviewed</span>
+    <span><b>TOOLS</b> &nbsp;Open-source radar update &nbsp;·&nbsp; Score <b class="g">7.6</b></span>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ BOTS -->
-<section class="bots section" id="bots">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-chip">Unsere Kanäle</div>
-      <h2 class="section-h2">Zwei Bots. Ein Ziel.<br/><em>Immer einen Schritt voraus.</em></h2>
-      <p class="section-sub">Abonniere kostenlos auf Telegram — kein Account nötig, direkt auf dein Handy.</p>
-    </div>
-
-    <div class="bots-grid">
-
-      <!-- ── MEGA TRADER ── -->
-      <div class="bot-card trader-card reveal reveal--left">
-        <div class="card-shine"></div>
-        <div class="card-border-glow trader-glow"></div>
-
-        <div class="card-top">
-          <div class="card-icon trader-icon-bg">🏆</div>
-          <div class="card-meta">
-            <h3>Mega Trader</h3>
-            <a href="https://t.me/MegaTradertv" target="_blank" class="card-handle">
-              <svg class="tg-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-              @MegaTradertv
-            </a>
+<!-- HERO -->
+<section class="hero" id="top">
+  <canvas id="pc"></canvas>
+  <div class="hero-in">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow reveal"><span class="ldot"></span>&nbsp; Phase 1 · Live Intelligence Portal</div>
+        <h1 class="reveal d1">Die wichtigsten<br><span class="grad">KI- und Krypto-</span><br>Signale. Täglich.</h1>
+        <p class="lead reveal d2">AuraSec™ bündelt relevante Entwicklungen aus KI, Cybersecurity und Krypto in drei klaren Telegram-Kanälen. Schnell lesbar, geprüft, für Menschen die immer einen Schritt voraus sein wollen.</p>
+        <div class="hero-btns reveal d3">
+          <a class="btn btn-primary" href="https://t.me/AuraSecBot?start=free" target="_blank" rel="noopener">Kostenlos auf Telegram</a>
+          <a class="btn btn-soft" href="#channels">Kanäle ansehen</a>
+        </div>
+        <div class="trust-row reveal d4">
+          <div class="trust-pill">Direkt auf Telegram</div>
+          <div class="trust-pill">Täglich aktualisiert</div>
+          <div class="trust-pill">Keine Anlageberatung</div>
+          <div class="trust-pill">Sponsored labeled</div>
+        </div>
+      </div>
+      <div class="hero-card reveal d2">
+        <div class="card-head">
+          <span class="live-tag">channels live</span>
+          <span>klar · schnell · fokussiert</span>
+        </div>
+        <div class="proof-list">
+          <div class="proof-item">
+            <b>Weniger Feed-Chaos</b>
+            <p>Statt dutzender ungewichteter Links bekommst du eine verdichtete, schnell erfassbare Form von Daily Updates.</p>
           </div>
-          <div class="card-live"><span class="live-pip"></span>LIVE</div>
-        </div>
-
-        <p class="card-desc">Die schärfste Krypto-Analyse auf Telegram. Live-Kurse, Fear &amp; Greed Index, DeFi-Exploits, Arbitrage-Radar und KI-kuratierte Top-News — täglich dreimal.</p>
-
-        <ul class="card-list">
-          <li><span class="li-icon">📊</span>BTC, ETH, SOL &amp; 7 weitere Coins live</li>
-          <li><span class="li-icon">😱</span>Fear &amp; Greed Index täglich</li>
-          <li><span class="li-icon">⚡</span>Arbitrage &amp; Cross-Chain Radar</li>
-          <li><span class="li-icon">🚨</span>DeFi Exploit Sofort-Alerts</li>
-          <li><span class="li-icon">🔥</span>Top 5 Trading-News (KI-kuratiert)</li>
-        </ul>
-
-        <div class="card-times">
-          <span>⏰ 08:00</span>
-          <span>⏰ 14:00</span>
-          <span>⏰ 20:00</span>
-        </div>
-
-        <a href="https://t.me/MegaTradertv" target="_blank" class="card-cta trader-cta">
-          <svg class="tg-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-          Jetzt kostenlos abonnieren
-          <svg class="arrow-r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- ── NEURONEWS24 ── -->
-      <div class="bot-card neuro-card reveal reveal--right">
-        <div class="card-shine"></div>
-        <div class="card-border-glow neuro-glow"></div>
-
-        <div class="card-top">
-          <div class="card-icon neuro-icon-bg">🤖</div>
-          <div class="card-meta">
-            <h3>NeuroNews24</h3>
-            <a href="https://t.me/NeuroNews24" target="_blank" class="card-handle">
-              <svg class="tg-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-              @NeuroNews24
-            </a>
+          <div class="proof-item">
+            <b>Klare Aufteilung</b>
+            <p>KI und Cybersecurity bei NeuroNews24. Markt und Krypto bei MegaTrader. Bedrohungen bei AuraSec Alerts.</p>
           </div>
-          <div class="card-live neuro-live"><span class="live-pip neuro-pip"></span>LIVE</div>
-        </div>
-
-        <p class="card-desc">Das Underground-Radar für KI-Leaks, Jailbreaks und Open-Source-Drops. Kein langweiliges Corporate-PR — nur Stories, die wirklich zählen.</p>
-
-        <ul class="card-list">
-          <li><span class="li-icon">🔓</span>AI Jailbreaks &amp; Model Leaks</li>
-          <li><span class="li-icon">🧠</span>Open-Source Releases (LocalLLaMA)</li>
-          <li><span class="li-icon">🚨</span>Cybersecurity &amp; AI Exploits</li>
-          <li><span class="li-icon">💥</span>Interne Firmen-Dramen</li>
-          <li><span class="li-icon">🤖</span>GPT, Claude, Gemini — alle Updates</li>
-        </ul>
-
-        <div class="card-times">
-          <span>⏰ Täglich</span>
-          <span>🌐 DE &amp; EN</span>
-          <span>📡 15+ Quellen</span>
-        </div>
-
-        <a href="https://t.me/NeuroNews24" target="_blank" class="card-cta neuro-cta">
-          <svg class="tg-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-          Jetzt kostenlos abonnieren
-          <svg class="arrow-r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════ HOW IT WORKS -->
-<section class="how section" id="how">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-chip">So funktioniert's</div>
-      <h2 class="section-h2">Vollautomatisch.<br/><em>Powered by Gemini AI.</em></h2>
-    </div>
-
-    <div class="how-steps">
-      <div class="how-step reveal reveal--delay-1">
-        <div class="step-num">01</div>
-        <div class="step-icon-wrap"><span class="step-ico">📡</span></div>
-        <h4>15+ Quellen scannen</h4>
-        <p>CoinTelegraph, Rekt.news, arXiv, Reddit und 11 weitere Premium-Quellen werden kontinuierlich überwacht — rund um die Uhr, ohne Pause.</p>
-      </div>
-      <div class="how-connector reveal reveal--delay-2"><div class="connector-line"></div></div>
-      <div class="how-step reveal reveal--delay-2">
-        <div class="step-num">02</div>
-        <div class="step-icon-wrap"><span class="step-ico">🧠</span></div>
-        <h4>Gemini 2.5 analysiert</h4>
-        <p>Die KI wählt die Top-5-Stories aus, analysiert Live-Marktdaten, Fear &amp; Greed, BTC-Dominanz und erstellt einen Profi-Digest in Sekunden.</p>
-      </div>
-      <div class="how-connector reveal reveal--delay-3"><div class="connector-line"></div></div>
-      <div class="how-step reveal reveal--delay-3">
-        <div class="step-num">03</div>
-        <div class="step-icon-wrap"><span class="step-ico">📱</span></div>
-        <h4>Direkt auf dein Handy</h4>
-        <p>08:00 · 14:00 · 20:00 Uhr. Pünktlich, kompakt, actionable. Kein Scrollen durch Twitter. Kein Lesen von 20 Artikeln. Nur das, was zählt.</p>
-      </div>
-    </div>
-
-    <!-- Phone Mockup -->
-    <div class="phone-scene reveal reveal--delay-4">
-      <div class="phone-glow-bg"></div>
-      <div class="phone-wrap">
-        <div class="phone">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="tg-app">
-              <div class="tg-app-bar">
-                <div class="tg-back">‹</div>
-                <div class="tg-channel-info">
-                  <div class="tg-ch-avatar">🏆</div>
-                  <div>
-                    <div class="tg-ch-name">Mega Trader</div>
-                    <div class="tg-ch-subs">2.4K subscribers</div>
-                  </div>
-                </div>
-                <div class="tg-menu">⋮</div>
-              </div>
-              <div class="tg-messages">
-                <div class="tg-msg">
-                  <div class="tg-msg-bubble">
-                    <p class="tg-msg-title">🏆 <strong>MEGA TRADER</strong> — 08:00 UTC</p>
-                    <p>Moin Trader. Grüne Kerzen, rote Stimmung.</p>
-                    <br>
-                    <p><strong>📊 MARKT</strong></p>
-                    <p>🟢 BTC $76,726 <span class="tg-green">+1.71%</span><br>
-                       🟢 ETH $2,120 <span class="tg-green">+2.68%</span><br>
-                       🟢 SOL $85.78 <span class="tg-green">+1.76%</span></p>
-                    <br>
-                    <p>😱 <strong>F&amp;G: 25 — Extreme Fear</strong></p>
-                    <p>Historisch: kaufen wenn andere ängstlich sind.</p>
-                    <br>
-                    <p>🚨 <strong>DeFi Exploit: $47M</strong><br>
-                    Flash-Loan Angriff — Reentrancy-Bug...</p>
-                    <br>
-                    <p>⚡ <strong>Arbitrage-Radar</strong><br>
-                    SOL/ETH Spread Binance vs Jupiter ~0.8%</p>
-                  </div>
-                  <div class="tg-msg-time">08:00 ✓✓</div>
-                </div>
-              </div>
-            </div>
+          <div class="proof-item">
+            <b>Ein Klick zum Kanal</b>
+            <p>Kein unnötiger Umweg. Direkt dort wo der eigentliche Content entsteht — täglich, geprüft, ohne Noise.</p>
           </div>
         </div>
       </div>
@@ -352,200 +522,554 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ PRICING -->
-<section class="pricing section" id="pricing">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-chip">Preise</div>
-      <h2 class="section-h2">Kostenlos starten.<br/><em>Premium für Profis.</em></h2>
-      <p class="section-sub">Beide Kanäle bleiben immer gratis. Für ernsthafte Trader gibt es bald mehr Alpha.</p>
+<main>
+
+<!-- PORTAL -->
+<section id="portal">
+  <div class="wrap">
+    <div class="sec-row">
+      <div class="reveal">
+        <div class="slabel">Live Portal</div>
+        <h2 class="shead">Aktuelle Signale — <em>direkt</em> aus dem System.</h2>
+        <p class="ssub">Kanalvorschau, Sponsored Slots und House Ads — wie ein echtes Medienprodukt.</p>
+      </div>
+    </div>
+
+    <a href="https://nordvpn.com" target="_blank" rel="noopener sponsored" class="sban reveal">
+      <span class="sban-badge">Gesponsert</span>
+      <img src="nordvpn_banner.png" alt="NordVPN — Stay Secure. Protect your daily trading. Save 68% + 3 months free." loading="lazy"/>
+    </a>
+
+    <div class="portal-grid reveal">
+      <div class="pfeed">
+        <div class="nitem"><span class="ntag">AI</span><div><h4>Agent workflows move from demos to production chains</h4><p>Distribution and automation shift — why it matters now for builders.</p></div><span class="nscore">8.4</span></div>
+        <div class="nitem"><span class="ntag cy">CYBER</span><div><h4>Telegram crypto groups remain high-value phishing targets</h4><p>Threat context for creators, traders and wallet users.</p></div><span class="nscore hi">HIGH</span></div>
+        <div class="nitem"><span class="ntag cr">CRYPTO</span><div><h4>Market narrative watch: liquidity rotation and risk appetite</h4><p>Informational context only. No financial advice.</p></div><span class="nscore md">6.9</span></div>
+        <div class="nitem"><span class="ntag tl">TOOLS</span><div><h4>Open-source AI tools enter AuraSec review queue</h4><p>Tool radar — listing and sponsor monetization layer.</p></div><span class="nscore">7.6</span></div>
+      </div>
+      <div class="nad">
+        <div class="nad-label">AuraSec · Sponsor-Slot</div>
+        <h3>Dein Produkt vor der richtigen Zielgruppe.</h3>
+        <p>AI-Entwickler, Crypto-Trader und Security-Experten. Direktanfrage oder unten buchen.</p>
+        <a class="btn btn-soft btn-sm" href="#ads">Inventory ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section id="channels">
+  <div class="wrap">
+    <div class="sec-row reveal">
+      <div>
+        <div class="slabel">Telegram Channels</div>
+        <h2 class="shead">Drei Kanäle. <em>Ein System.</em></h2>
+        <p class="ssub">Wähle den Kanal der zu dir passt — oder folge allen drei. Kostenlos.</p>
+      </div>
+      <a class="btn btn-soft btn-sm" href="https://t.me/AuraSecBot?start=free" target="_blank" rel="noopener">Alle joinen →</a>
+    </div>
+    <div class="g3">
+      <article class="card reveal d1">
+        <div class="ch-top">
+          <span class="badge">KI · Cyber</span>
+          <span class="ch-status">live</span>
+        </div>
+        <h3>NeuroNews24</h3>
+        <p>Für Leser, die Modell-Releases, KI-Entwicklungen und Security-Themen täglich im Blick behalten wollen.</p>
+        <ul class="feats">
+          <li>AI Research &amp; Open-Source Tools</li>
+          <li>CyberWatch &amp; AuraSec Signale</li>
+          <li>Crypto narrative context</li>
+          <li>5 geprüfte Signale täglich</li>
+        </ul>
+        <div class="lbox"><strong>Format</strong><p>NEURONEWS24 BRIEF · 5 Signale · Bewertet · Mit Quellen</p></div>
+        <div class="card-btns">
+          <a class="btn btn-primary btn-sm" href="https://t.me/NeuroNews024" target="_blank" rel="noopener">Kanal öffnen</a>
+          <a class="btn btn-soft btn-sm" href="#premium">Details</a>
+        </div>
+      </article>
+      <article class="card card-v reveal d2">
+        <div class="ch-top">
+          <span class="badge badge-v">Krypto · Markt</span>
+          <span class="ch-status">live</span>
+        </div>
+        <h3>MegaTrader PRO+</h3>
+        <p>Marktbewegungen, Krypto-Kontext und Trigger. Free Pulse kostenlos. Premium+ mit Bot-Zugang.</p>
+        <ul class="feats">
+          <li>Market pulse &amp; narrative risk</li>
+          <li>Risk-aware context</li>
+          <li>AureliaTrade API waitlist</li>
+          <li>Keine Anlageberatung</li>
+        </ul>
+        <div class="lbox"><strong>Format</strong><p>MEGATRADER FREE PULSE · BTC/ETH/SOL · Narrative · Risk</p></div>
+        <div class="card-btns">
+          <a class="btn btn-primary btn-sm" href="https://t.me/MegaTradertv" target="_blank" rel="noopener">Kanal öffnen</a>
+          <a class="btn btn-soft btn-sm" href="#premium">Premium+</a>
+        </div>
+      </article>
+      <article class="card card-g reveal d3">
+        <div class="ch-top">
+          <span class="badge badge-g">Threat Intel</span>
+          <span class="ch-status">live</span>
+        </div>
+        <h3>AuraSec Alerts</h3>
+        <p>Defensive Cybersecurity Alerts für Phishing, Wallet Drainers, AI Tool Risk und Scam Detection.</p>
+        <ul class="feats">
+          <li>Phishing &amp; scam watch</li>
+          <li>Wallet drainer alerts</li>
+          <li>AI security risk</li>
+          <li>Defensive threat intel only</li>
+        </ul>
+        <div class="lbox"><strong>Format</strong><p>AURASEC ALERT · Threat · Risk · What to do · Source</p></div>
+        <div class="card-btns">
+          <a class="btn btn-primary btn-sm" href="https://t.me/AuraSecBot?start=alerts" target="_blank" rel="noopener">Alerts aktivieren</a>
+          <a class="btn btn-soft btn-sm" href="#ads">Sponsors</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="premium" class="pricing-section">
+  <div class="wrap">
+    <div class="sec-row reveal">
+      <div>
+        <div class="slabel">Free · Premium · API</div>
+        <h2 class="shead">Starte kostenlos.<br><em>Scale wenn du bereit bist.</em></h2>
+        <p class="ssub">Keine Kreditkarte. Keine Abo-Falle. Keine Gewinngarantien. Kein Bullshit.</p>
+      </div>
     </div>
 
     <div class="pricing-grid">
 
-      <div class="price-card reveal reveal--left">
-        <div class="price-plan">Gratis</div>
-        <div class="price-amount"><span class="price-curr">€</span>0<span class="price-per">/Monat</span></div>
-        <div class="price-name">Telegram Kanal</div>
-        <ul class="price-list">
-          <li class="yes">3× täglich Updates</li>
-          <li class="yes">Live-Kurse Top 10 Coins</li>
-          <li class="yes">Fear &amp; Greed täglich</li>
-          <li class="yes">Top 5 KI-kuratierte News</li>
-          <li class="yes">Arbitrage-Radar (allgemein)</li>
-          <li class="no">Echtzeit Breakout-Alerts</li>
-          <li class="no">Privater Alpha-Kanal</li>
-          <li class="no">Portfolio-Analyse KI</li>
+      <!-- FREE -->
+      <div class="pcard reveal d1">
+        <span class="pbadge free">Free</span>
+        <div class="pname">Join Free</div>
+        <div class="pdesc">Direkt auf Telegram. Keine Anmeldung. Für immer kostenlos.</div>
+        <div class="pprice">
+          <span class="pnum nfree">€0</span>
+          <div class="pper">Für immer kostenlos</div>
+        </div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li>Alle Free Telegram Feeds</li>
+          <li>Daily Intelligence Briefs</li>
+          <li>Basic risk context</li>
+          <li>Community Zugang</li>
+          <li class="no">Kein Deep Report</li>
+          <li class="no">Kein Tool Radar</li>
         </ul>
-        <a href="https://t.me/MegaTradertv" target="_blank" class="price-cta price-cta--free">
-          <svg class="tg-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-          Jetzt abonnieren — gratis
-        </a>
+        <div class="pcta">
+          <a class="btn btn-soft btn-sm btn-full" href="https://t.me/AuraSecBot?start=free" target="_blank" rel="noopener">Kostenlos starten</a>
+        </div>
       </div>
 
-      <div class="price-card price-card--pro reveal reveal--right">
-        <div class="price-popular">⚡ Bald verfügbar</div>
-        <div class="price-plan">Pro</div>
-        <div class="price-amount"><span class="price-curr">€</span>9<span class="price-per">/Monat</span></div>
-        <div class="price-name">Mega Trader Pro</div>
-        <ul class="price-list">
-          <li class="yes">Alles aus Gratis</li>
-          <li class="yes">Echtzeit Breakout-Alerts 🔔</li>
-          <li class="yes">Konkreter Arbitrage-Alpha</li>
-          <li class="yes">Wöchentliche Deep-Dives</li>
-          <li class="yes">Privater Telegram-Kanal</li>
-          <li class="yes">Portfolio-Analyse mit KI</li>
-          <li class="yes">Direkt-Support via Discord</li>
-          <li class="yes">Früh-Zugang neue Features</li>
+      <!-- NEURONEWS BRIEF -->
+      <div class="pcard reveal d2">
+        <span class="pbadge">NeuroNews24</span>
+        <div class="pname">Premium Brief</div>
+        <div class="pdesc">Wöchentlicher Deep Report + kuratierter Tool Radar.</div>
+        <div class="pprice">
+          <span class="pnum">€9<span style="font-size:20px;font-weight:600;color:var(--muted)">/mo</span></span>
+          <div class="pper">Demnächst · Waitlist jetzt offen</div>
+        </div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li>Alles aus Free</li>
+          <li>Weekly Deep Report</li>
+          <li>Tool Radar &amp; Listings</li>
+          <li>Direkte Source-Links</li>
+          <li>Opportunity Brief</li>
+          <li class="no">Kein Bot-Zugang</li>
         </ul>
-        <a href="#contact" class="price-cta price-cta--pro">
-          Warteliste beitreten →
-        </a>
+        <div class="pcta">
+          <a class="btn btn-soft btn-sm btn-full" href="https://t.me/AuraSecBot?start=neuronews_premium" target="_blank" rel="noopener">Waitlist beitreten</a>
+        </div>
       </div>
 
+      <!-- MEGATRADER FEATURED -->
+      <div class="pcard pcard-feat reveal d3">
+        <span class="feat-banner">Most Popular</span>
+        <span class="pbadge prem" style="margin-top:18px">Premium+</span>
+        <div class="pname" style="color:#c4b5fd">MegaTrader Bot</div>
+        <div class="pdesc">Private Signale + optionaler Bot-Workflow. Paper mode zuerst.</div>
+        <div class="pprice">
+          <span class="pnum nprem">€149<span style="font-size:20px;font-weight:600;color:var(--muted)">/mo</span></span>
+          <div class="pper">Placeholder · Keine Gewinngarantien</div>
+        </div>
+        <div class="pdiv" style="background:linear-gradient(90deg,transparent,rgba(140,160,255,.3),transparent)"></div>
+        <ul class="pfeats">
+          <li>Alles aus Free + Brief</li>
+          <li>Private Signal Feed</li>
+          <li>Paper Mode zuerst</li>
+          <li>Optionale Bot-Workflows</li>
+          <li>AureliaTrade API Early Access</li>
+          <li>Priorität Support</li>
+        </ul>
+        <div class="pcta">
+          <a class="btn btn-primary btn-sm btn-full" href="https://t.me/AuraSecBot?start=premium_plus" target="_blank" rel="noopener">Premium+ anfragen</a>
+        </div>
+      </div>
+
+      <!-- API -->
+      <div class="pcard reveal d4">
+        <span class="pbadge api">API</span>
+        <div class="pname">AureliaTrade API</div>
+        <div class="pdesc">Signal- und Threat-Endpoints für Builder &amp; Entwickler.</div>
+        <div class="pprice">
+          <span class="pnum nsoon">Demnächst</span>
+          <div class="pper">Waitlist jetzt offen</div>
+        </div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li>Signal Endpoints</li>
+          <li>Threat Intelligence</li>
+          <li>Tool Listing API</li>
+          <li>Webhook Alerts</li>
+          <li class="no">Preis noch offen</li>
+          <li class="no">Beta für Waitlist</li>
+        </ul>
+        <div class="pcta">
+          <a class="btn btn-soft btn-sm btn-full" href="https://t.me/AuraSecBot?start=api" target="_blank" rel="noopener">API Waitlist</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="pricing-note">Keine Anlageberatung · Keine Gewinngarantien · Alle Preise sind Placeholder und können sich ändern</p>
+  </div>
+</section>
+
+<!-- ADS -->
+<section id="ads">
+  <div class="wrap">
+    <div class="sec-row reveal">
+      <div>
+        <div class="slabel">Ad Inventory · Sponsor-Platzierungen</div>
+        <h2 class="shead">Erreiche <em>echte</em> Tech-Leute.</h2>
+        <p class="ssub">AI-Entwickler, Crypto-Trader und Security-Experten — kaufkräftig, täglich aktiv.</p>
+      </div>
+      <a class="btn btn-soft btn-sm" href="mailto:ads@aurasec.io">Angebot anfragen →</a>
+    </div>
+
+    <a href="https://ledger.com" target="_blank" rel="noopener sponsored" class="sban reveal">
+      <span class="sban-badge">Gesponsert</span>
+      <img src="ledger_banner.png" alt="Ledger — Secure Your Crypto Offline. Not your keys, not your coins." loading="lazy"/>
+    </a>
+
+    <div class="g3 reveal">
+      <div class="adcard">
+        <div class="slabel" style="font-size:10px;margin-bottom:8px">Slot A — Hero Banner</div>
+        <h4>Leaderboard · 728×90</h4>
+        <p>Top-of-Feed. Maximale Reichweite. CPM oder Flatrate pro Woche.</p>
+        <a class="btn btn-soft btn-sm" href="mailto:ads@aurasec.io">Anfragen</a>
+      </div>
+      <div class="adcard">
+        <div class="slabel" style="font-size:10px;margin-bottom:8px">Slot B — Native Card</div>
+        <h4>Native Ad · In-Feed</h4>
+        <p>Redaktionell integriert. Höchste Engagement-Rate im gesamten Inventory.</p>
+        <a class="btn btn-soft btn-sm" href="mailto:ads@aurasec.io">Anfragen</a>
+      </div>
+      <div class="adcard">
+        <div class="slabel" style="font-size:10px;margin-bottom:8px">Slot C — Tool Review</div>
+        <h4>Sponsored Listing</h4>
+        <p>Im Tool Radar — reviewed, mit Score und Source. Glaubwürdig platziert.</p>
+        <a class="btn btn-soft btn-sm" href="mailto:ads@aurasec.io">Anfragen</a>
+      </div>
+    </div>
+
+    <a href="https://1password.com" target="_blank" rel="noopener sponsored" class="sban reveal">
+      <span class="sban-badge">Gesponsert</span>
+      <img src="onepassword_banner.png" alt="1Password — Protect your digital life." loading="lazy"/>
+    </a>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="contact">
+  <div class="wrap">
+    <div class="join-box reveal">
+      <div>
+        <div class="slabel">Wähle deinen Kanal</div>
+        <h2>Jetzt starten.<br><span class="grad" style="font-style:normal">Kostenlos auf Telegram.</span></h2>
+        <p style="color:var(--soft);font-size:15px;line-height:1.65;max-width:480px;margin-top:12px">Wenn die Seite ihren Job macht, endet der Weg nicht im Layout — sondern im Kanal. Genau dort entsteht tägliche Bindung, Reichweite und Wiederkehr.</p>
+        <div class="email-row">
+          <input type="email" placeholder="deine@email.com" aria-label="E-Mail-Adresse"/>
+          <button class="btn btn-primary" id="emailBtn">Eintragen</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0">
+        <a class="btn btn-primary" href="https://t.me/NeuroNews024" target="_blank" rel="noopener" style="padding:0 28px">Zu NeuroNews24 →</a>
+        <a class="btn btn-soft" href="https://t.me/MegaTradertv" target="_blank" rel="noopener" style="padding:0 28px">Zu MegaTrader →</a>
+        <p style="font:11px var(--mono);color:var(--muted);text-align:center;letter-spacing:.05em">Kostenlos · Keine Kreditkarte</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ ADVERTISE -->
-<section class="advertise section" id="advertise">
-  <div class="container">
-    <div class="ad-hero reveal">
-      <div class="ad-glow"></div>
-      <div class="ad-chip">💼 Für Werbepartner</div>
-      <h2 class="ad-h2">Erreiche aktive Trader<br/>und KI-Enthusiasten.</h2>
-      <p class="ad-sub">Unsere Abonnenten sind tech-affin, finanzstark und hochmotiviert. Kein passives Scrollen — unsere User lesen aktiv und kaufen. Das ist der Unterschied zu Social Media.</p>
+</main>
 
-      <div class="ad-stats">
-        <div class="ad-stat">
-          <span class="ad-stat-val">3×</span>
-          <span class="ad-stat-label">Tägliche Impressionen</span>
-        </div>
-        <div class="ad-stat">
-          <span class="ad-stat-val">&gt;40%</span>
-          <span class="ad-stat-label">Ø Öffnungsrate</span>
-        </div>
-        <div class="ad-stat">
-          <span class="ad-stat-val">DE/AT</span>
-          <span class="ad-stat-label">Deutschsprachig</span>
-        </div>
-        <div class="ad-stat">
-          <span class="ad-stat-val">100%</span>
-          <span class="ad-stat-label">Organisch gewachsen</span>
-        </div>
-      </div>
-
-      <div class="ad-formats">
-        <div class="ad-format">
-          <span class="af-icon">📌</span>
-          <div>
-            <h5>Sponsored Post</h5>
-            <p>Einzelner Post im Kanal — klar als Werbung markiert, aber im natürlichen Umfeld deiner Zielgruppe.</p>
-          </div>
-        </div>
-        <div class="ad-format">
-          <span class="af-icon">🔗</span>
-          <div>
-            <h5>Newsletter-Integration</h5>
-            <p>Dein Produkt wird in den regulären Digest eingebettet — maximale Aufmerksamkeit, minimale Ablenkung.</p>
-          </div>
-        </div>
-        <div class="ad-format">
-          <span class="af-icon">🤝</span>
-          <div>
-            <h5>Langzeit-Partnerschaft</h5>
-            <p>Rabattierte Monats-Pakete für Exchanges, Tools und Finanz-Produkte die zu unserer Community passen.</p>
-          </div>
-        </div>
-      </div>
-
-      <a href="https://t.me/MegaTradertv" target="_blank" class="ad-cta">
-        <svg class="tg-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-        Jetzt Kontakt aufnehmen
-      </a>
+<!-- LEGAL -->
+<div class="legal" id="impressum">
+  <div class="wrap legal-grid">
+    <div>
+      <div class="slabel" style="font-size:10px">Kontakt</div>
+      <ul class="clist">
+        <li>aurasec.intelligence@gmail.com</li>
+        <li>ads@aurasec.io</li>
+        <li>security@aurasec.io</li>
+      </ul>
+    </div>
+    <div>
+      <details class="warn">
+        <summary>Impressum</summary>
+        <p>E-Mail: aurasec.intelligence@gmail.com — Weitere Angaben vor Launch ergänzen.</p>
+      </details>
+      <details>
+        <summary>Risikohinweis</summary>
+        <p>Alle Inhalte dienen ausschließlich der Information. Keine Anlageberatung. Keine Gewinngarantien. Gesponserte Inhalte sind als solche gekennzeichnet.</p>
+      </details>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ═══════════════════════════════════════════════════════ FINAL CTA -->
-<section class="final-cta section" id="contact">
-  <div class="container">
-    <div class="fcta-inner reveal">
-      <div class="fcta-orb fcta-orb--1"></div>
-      <div class="fcta-orb fcta-orb--2"></div>
-      <h2 class="fcta-h2">Bereit für deinen<br/><span class="gradient-text">Informationsvorsprung</span>?</h2>
-      <p class="fcta-sub">Kostenlos. Kein Spam. Jederzeit kündbar. Direkt auf Telegram.</p>
-      <div class="fcta-btns">
-        <a href="https://t.me/MegaTradertv" target="_blank" class="btn-hero-primary">
-          <svg class="tg-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-          🏆 Mega Trader
-        </a>
-        <a href="https://t.me/NeuroNews24" target="_blank" class="btn-hero-secondary">
-          <svg class="tg-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z"/></svg>
-          🤖 NeuroNews24
-        </a>
-      </div>
-      <p class="fcta-disclaimer">
-        ⚠️ Kein Finanzberatungsangebot. Alle Inhalte dienen nur zu Informationszwecken.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
+  <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-brand-col">
-        <a href="#" class="nav-brand footer-brand-link">
-          <div class="brand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#bolt2)" stroke="none"/>
-              <defs><linearGradient id="bolt2" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#f5c842"/><stop offset="1" stop-color="#ff6b35"/></linearGradient></defs>
-            </svg>
+      <div>
+        <a class="brand" href="#top">
+          <span class="bmark"></span>
+          <div class="btxt" style="margin-left:12px">
+            <b>Aura<span>Sec™</span></b>
+            <small>Verified Intelligence OS</small>
           </div>
-          <span class="brand-name">BotHub</span>
         </a>
-        <p class="footer-tagline">Automatische Telegram-Intelligence für KI &amp; Krypto. Powered by Gemini AI.</p>
-        <div class="footer-social">
-          <a href="https://t.me/MegaTradertv" target="_blank" class="social-link" aria-label="Mega Trader Telegram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="18"><path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 26.7-19.7 91.5-27.9 121.4-3.4 12.7-10.2 16.9-16.7 17.3-14.2 1-25-9.3-38.7-18.3-21.5-14.1-33.7-22.9-54.6-36.7-24.2-15.9-8.5-24.7 5.3-39 3.6-3.7 66.2-60.7 67.4-65.9.2-.7.1-3.2-1.2-4.5s-3.1-.8-4.4-.5c-1.9.5-31.8 20.2-89.8 59.3-8.5 5.8-16.2 8.7-23.1 8.5-7.6-.2-22.2-4.3-33.1-7.8-13.3-4.3-23.9-6.6-23-13.9.5-3.8 5.8-7.7 15.9-11.7 62.4-27.2 104-45.1 124.9-53.7 59.5-24.7 71.9-29 80-29 1.8 0 5.7.4 8.2 2.5 2.1 1.8 2.7 4.2 3 5.9-.1 1.7-.2 3.3-.4 5z" fill="currentColor"/></svg>
+        <p style="margin-top:14px;max-width:280px;color:var(--muted);font-size:13px;line-height:1.65">Täglich geprüfte Signale zu KI, Cybersicherheit und Krypto — direkt auf Telegram. Kostenlos starten.</p>
+        <div class="cchips">
+          <a href="https://t.me/NeuroNews024" target="_blank" rel="noopener" class="cchip">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='11' fill='%230e1928'/%3E%3Ccircle cx='11' cy='11' r='5' fill='none' stroke='%2366c6ff' stroke-width='1.5'/%3E%3Ccircle cx='11' cy='11' r='2' fill='%2366c6ff'/%3E%3C/svg%3E" alt=""/>
+            NeuroNews24
           </a>
-          <a href="https://github.com/wunderle1993-source/MegaTrader-Bot" target="_blank" class="social-link" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://t.me/MegaTradertv" target="_blank" rel="noopener" class="cchip">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='11' fill='%230e1928'/%3E%3Cpath d='M6 14l3-5 3 3 4-6' stroke='%238ca0ff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" alt=""/>
+            MegaTrader PRO+
+          </a>
+          <a href="https://t.me/AuraSecBot?start=alerts" target="_blank" rel="noopener" class="cchip">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='11' fill='%230e1928'/%3E%3Cpath d='M11 5v2m0 8v2m-4.24-1.76-1.42 1.42m9.9-9.9 1.42-1.42M5 11H3m16 0h-2M7.76 7.76 6.34 6.34m9.9 9.9 1.42 1.42' stroke='%237df0b8' stroke-width='1.3' stroke-linecap='round'/%3E%3Ccircle cx='11' cy='11' r='3' fill='%237df0b8' opacity='.7'/%3E%3C/svg%3E" alt=""/>
+            AuraSec Alerts
           </a>
         </div>
       </div>
-
-      <div class="footer-links-col">
-        <h5>Kanäle</h5>
-        <a href="https://t.me/MegaTradertv" target="_blank">🏆 Mega Trader</a>
-        <a href="https://t.me/NeuroNews24" target="_blank">🤖 NeuroNews24</a>
-        <a href="#pricing">⚡ Mega Trader Pro</a>
+      <div>
+        <h4>Produkte</h4>
+        <a href="#channels">NeuroNews24</a>
+        <a href="#channels">MegaTrader PRO+</a>
+        <a href="#channels">AuraSec Alerts</a>
+        <a href="#premium">AureliaTrade API</a>
       </div>
-
-      <div class="footer-links-col">
-        <h5>Unternehmen</h5>
-        <a href="#advertise">Werbung schalten</a>
-        <a href="#contact">Kontakt</a>
-        <a href="https://github.com/wunderle1993-source/MegaTrader-Bot" target="_blank">Open Source</a>
+      <div>
+        <h4>Werbung</h4>
+        <a href="#ads">Werbeflächen</a>
+        <a href="#ads">Sponsor-Pakete</a>
+        <a href="#ads">Tool Listings</a>
+        <a href="mailto:ads@aurasec.io">Direktkontakt</a>
       </div>
-
-      <div class="footer-links-col">
-        <h5>Rechtliches</h5>
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
-        <a href="#">Haftungsausschluss</a>
+      <div>
+        <h4>Rechtliches</h4>
+        <a href="#impressum">Impressum</a>
+        <a href="#impressum">Datenschutz</a>
+        <a href="#impressum">Risikohinweis</a>
+        <a href="#impressum">Sponsoring</a>
+      </div>
+      <div>
+        <h4>Telegram</h4>
+        <a href="https://t.me/NeuroNews024" target="_blank" rel="noopener">NeuroNews24</a>
+        <a href="https://t.me/MegaTradertv" target="_blank" rel="noopener">MegaTrader PRO+</a>
+        <a href="https://t.me/AuraSecBot?start=alerts" target="_blank" rel="noopener">AuraSec Alerts</a>
+        <a href="https://t.me/AuraSecBot?start=free" target="_blank" rel="noopener">Bot · Free Start</a>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <p>© 2026 BotHub · Made with ⚡ in Germany · Powered by Gemini AI</p>
-      <p class="footer-disclaimer">Kein Finanzberatungsangebot. Alle Angaben ohne Gewähr.</p>
+      <span>© 2026 AuraSec™ — Alle Rechte vorbehalten</span>
+      <span>Keine Anlageberatung &nbsp;·&nbsp; Reine Information &nbsp;·&nbsp; Gesponserte Inhalte sind gekennzeichnet</span>
     </div>
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script>
+'use strict';
+const TOUCH=window.matchMedia('(hover:none),(pointer:coarse)').matches;
+const REDUCED=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SM=window.innerWidth<=700;
+
+/* PAGE FADE */
+document.body.style.opacity='0';
+document.body.style.transition='opacity .48s ease';
+window.addEventListener('load',()=>{document.body.style.opacity='1';});
+
+/* CURSOR */
+(function(){
+  const dot=document.getElementById('cDot'),ring=document.getElementById('cRing');
+  if(!dot||!ring||TOUCH) return;
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  document.addEventListener('mouseleave',()=>{dot.style.opacity='0';ring.style.opacity='0';});
+  document.addEventListener('mouseenter',()=>{dot.style.opacity='1';ring.style.opacity='1';});
+  const hEls='a,button,.card,.pcard,.nitem,.sban,.btn,.trust-pill';
+  document.querySelectorAll(hEls).forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('big'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('big'));
+  });
+  (function loop(){
+    rx+=(mx-rx)*.11;ry+=(my-ry)*.11;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* PARTICLES */
+(function(){
+  const c=document.getElementById('pc');
+  if(!c||REDUCED) return;
+  const ctx=c.getContext('2d');
+  let W,H,P=[];
+  const N=SM?18:46;
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  window.addEventListener('resize',resize);resize();
+  function mk(rnd){
+    return{x:Math.random()*W,y:rnd?Math.random()*H:H+5,r:Math.random()*1.5+.3,vx:(Math.random()-.5)*.22,vy:-(Math.random()*.38+.1),life:Math.random(),max:Math.random()*.5+.5,h:[200,240,165][Math.floor(Math.random()*3)]};
+  }
+  for(let i=0;i<N;i++)P.push(mk(true));
+  (function loop(){
+    ctx.clearRect(0,0,W,H);
+    P.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.life+=.0025;
+      if(p.life>p.max||p.y<-8)Object.assign(p,mk(false));
+      const a=Math.sin((p.life/p.max)*Math.PI)*.45;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${p.h},80%,68%,${a})`;ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* NAV */
+(function(){
+  const nav=document.getElementById('nav');
+  const burger=document.getElementById('burger');
+  const mob=document.getElementById('mob');
+  if(!nav) return;
+  nav.style.transition='transform .4s cubic-bezier(.4,0,.2,1),background .3s,border-color .3s';
+  let last=0,hidden=false;
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    nav.classList.toggle('scrolled',y>50);
+    if(!TOUCH&&!SM){
+      if(y>220){if(y>last+12&&!hidden){nav.style.transform='translateY(-100%)';hidden=true;}else if(y<last-12&&hidden){nav.style.transform='';hidden=false;}}
+      else{nav.style.transform='';hidden=false;}
+    }
+    last=y;
+  },{passive:true});
+  if(burger&&mob){
+    burger.addEventListener('click',()=>{
+      const open=mob.classList.toggle('on');
+      burger.setAttribute('aria-expanded',open);
+      const s=burger.querySelectorAll('span');
+      if(open){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)';}
+      else s.forEach(x=>{x.style.transform='';x.style.opacity='';});
+    });
+    mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('on');burger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});}));
+  }
+})();
+
+/* ACTIVE NAV */
+(function(){
+  const secs=document.querySelectorAll('section[id]');
+  const lnks=document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',()=>{
+    let cur='';
+    secs.forEach(s=>{if(window.scrollY>=s.offsetTop-160)cur=s.id;});
+    lnks.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+cur));
+  },{passive:true});
+})();
+
+/* SCROLL REVEAL */
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -24px 0px'});
+  els.forEach(el=>io.observe(el));
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{document.querySelectorAll('.hero .reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*130));},200);
+  });
+})();
+
+/* 3D TILT */
+(function(){
+  if(TOUCH||REDUCED) return;
+  document.querySelectorAll('.card,.pcard,.proof-item').forEach(c=>{
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect();
+      const dx=(e.clientX-r.left-r.width/2)/(r.width/2);
+      const dy=(e.clientY-r.top-r.height/2)/(r.height/2);
+      c.style.transform=`translateY(-4px) rotateX(${-dy*4}deg) rotateY(${dx*4}deg)`;
+      c.style.transition='transform .08s ease';
+    });
+    c.addEventListener('mouseleave',()=>{
+      c.style.transform='';
+      c.style.transition='transform .55s cubic-bezier(.34,1.56,.64,1)';
+    });
+  });
+})();
+
+/* RIPPLE */
+(function(){
+  const s=document.createElement('style');
+  s.textContent='@keyframes rpl{to{transform:translate(-50%,-50%) scale(80);opacity:0}}';
+  document.head.appendChild(s);
+  document.querySelectorAll('.btn,.btn-nav').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      const r=btn.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      const rip=document.createElement('span');
+      rip.style.cssText=`position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.28);transform:translate(-50%,-50%) scale(0);animation:rpl .55s ease-out forwards;left:${x}px;top:${y}px;pointer-events:none;z-index:20;`;
+      if(getComputedStyle(btn).position==='static')btn.style.position='relative';
+      btn.style.overflow='hidden';btn.appendChild(rip);setTimeout(()=>rip.remove(),600);
+    });
+  });
+})();
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(!t)return;e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-76,behavior:'smooth'});
+  });
+});
+
+/* EMAIL */
+(function(){
+  const inp=document.querySelector('.email-row input');
+  const btn=document.getElementById('emailBtn');
+  if(!inp||!btn)return;
+  const ks=document.createElement('style');
+  ks.textContent='@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}';
+  document.head.appendChild(ks);
+  btn.addEventListener('click',()=>{
+    const v=inp.value.trim();
+    if(!v||!v.includes('@')){inp.style.borderColor='var(--red)';inp.style.animation='shake .35s ease';setTimeout(()=>{inp.style.borderColor='';inp.style.animation='';},1400);return;}
+    btn.textContent='✓ Eingetragen';
+    btn.style.background='linear-gradient(135deg,var(--green),var(--cyan))';
+    btn.disabled=true;
+  });
+})();
+
+console.log('%c⚡ AuraSec™','color:#66c6ff;font-size:28px;font-weight:900;font-family:IBM Plex Mono;');
+console.log('%cVerified Intelligence OS · Built by Claude · Made right — finally.','color:#7a90a8;font-size:12px;');
+</script>
 </body>
 </html>
